@@ -47,5 +47,6 @@ group :development, :test do
   gem 'pry'
   gem 'pry-rails'
   gem 'better_errors'
+  gem 'activeadmin', github: 'activeadmin'
 end
 
