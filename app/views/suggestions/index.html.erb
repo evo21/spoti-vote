@@ -1,13 +1,12 @@
-<%= form_for @suggestion, url: {action: "create"} do |f| %>
+<%= form_tag search_spotify_path, method: 'search_spotify' do |f| %>
     <div class="field">
-        <%=  f.label 'Song Name' %>
-        <%=  f.text_field :track_name %>
-        <%= f.submit %>
-     </div>
+        <%=  text_field_tag 'query', params[:query] %>
+        <%=  button_tag(type: "submit") do %>
+        Submit
+        <% end %>
 
-     <div class="field">
-     	<% @suggestion.each do |s| %>
-			<ul>
-  				<li><%= @suggestion.artists %></li>
-			</ul>
-	<% end %>
+     </div>
+<% end %>
+
+
+

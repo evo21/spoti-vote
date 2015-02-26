@@ -1,2 +1,10 @@
 <h1>Suggestions#show</h1>
-<p>Find me in app/views/suggestions/show.html.erb</p>
+<h2>Search results:</h2>
+<p><% @result.each do |track| %>
+  <strong>artist: </strong>
+  <% track.artists.each do |artist| %>
+    <%= artist.name %>
+  <% end %>
+  <strong>track: </strong><%= track.name %>
+  <br>
+<% end %>

@@ -3,8 +3,9 @@ Rails.application.routes.draw do
   ActiveAdmin.routes(self)
   devise_for :users
 
-  resources :suggestions
+  resources :suggestions, :except => [:create]
   get '/', to: 'users#index', as: 'dashboard'
+  post 'suggestions', to: 'suggestions#search_spotify', as: 'search_spotify'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
