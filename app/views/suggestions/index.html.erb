@@ -1,2 +1,13 @@
-<h1>Suggestions#index</h1>
-<p>Find me in app/views/suggestions/index.html.erb</p>
+<%= form_for @suggestion, url: {action: "create"} do |f| %>
+    <div class="field">
+        <%=  f.label 'Song Name' %>
+        <%=  f.text_field :track_name %>
+        <%= f.submit %>
+     </div>
+
+     <div class="field">
+     	<% @suggestion.each do |s| %>
+			<ul>
+  				<li><%= @suggestion.artists %></li>
+			</ul>
+	<% end %>

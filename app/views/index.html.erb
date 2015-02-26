@@ -3,4 +3,7 @@
  <% @track_name.each do |t| %>
    <li><%= t.name %>  |  <%= link_to "Vote", suggestion_path(t.id) %></li>
  <% end %>
+
+ <%= 'spot_search' %>
+ <%= 'suggestions_list' %>
 </ul>

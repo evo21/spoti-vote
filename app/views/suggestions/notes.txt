@@ -1,0 +1,11 @@
+results.each do |song|
+song.artists
+song.track = RSpotify::Track.search('calling baton rouge').name
+
+song.artwork
+song.id -- RSpotify::Track.search('calling baton rouge').id
+
+end
+
+
+tracks = RSpotify::Track.search('Wanna Know', limit: 10, market: 'US')
