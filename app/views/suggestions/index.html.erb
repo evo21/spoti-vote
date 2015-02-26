@@ -1,2 +1,12 @@
-<h1>Suggestions#index</h1>
-<p>Find me in app/views/suggestions/index.html.erb</p>
+<%= form_tag search_spotify_path, method: 'search_spotify' do |f| %>
+    <div class="field">
+        <%=  text_field_tag 'query', params[:query] %>
+        <%=  button_tag(type: "submit") do %>
+        Submit
+        <% end %>
+
+     </div>
+<% end %>
+
+
+
