@@ -10,6 +10,21 @@ ActiveAdmin.register_page "Dashboard" do
       end
     end
 
+    
+
+  # column do 
+  #   column do
+  #     panel "Users" do
+  #       ul do
+  #         User.recent(10).map do |user|
+  #           li user.email
+  #         end
+  #       end
+  #     end
+  #   end
+  # end
+
+
     # Here is an example of a simple dashboard with columns and panels.
     #
     # columns do
