@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   devise_for :users
 
   resources :suggestions
-  get '/', to: 'users#index', as: 'dashboard'
+  get '/', to: 'suggestions#index', as: 'dashboard'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
