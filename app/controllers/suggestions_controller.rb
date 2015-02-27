@@ -22,6 +22,26 @@ class SuggestionsController < ApplicationController
     # @suggestion = Suggestion.create(whatever params)
   end
 
+  def upvote
+    # binding.pry
+    if current_user.votes > 0   
+      if params[:upvote]
+        @suggestion = Suggestion.find_by(:spotify_id => params[:upvote])
+        @suggestion.upvotes += 1
+      elsif params[:downvote]
+        @suggestion = Suggestion.find_by(:spotify_id => params[:downvote])
+        @suggestion.downvotes -= 1
+      end
+      @user = current_user
+      @user.votes -= 1
+      @suggestion.save
+      @user.save
+    else
+      flash[:notice] = "You have no more votes"
+    end
+    render :index
+  end
+
   def show
   	@track = RSpotify::Track.find(params[:id])
   	render :index
