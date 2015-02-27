@@ -1,12 +1,13 @@
-<%= form_tag search_spotify_path, method: 'search_spotify' do |f| %>
-    <div class="field">
-        <%=  text_field_tag 'query', params[:query] %>
-        <%=  button_tag(type: "submit") do %>
-        Submit
-        <% end %>
 
+     <%= render 'spotify_search' %>
+    
+     <div class="col-xs-6">
+     <%= render 'search_results' %>
      </div>
-<% end %>
+
+     <div class="col-xs-6">
+     <%= render 'vote' %>
+     </div>
 
 
 

@@ -1,10 +1,25 @@
 <h1>Suggestions#show</h1>
 <h2>Search results:</h2>
-<p><% @result.each do |track| %>
-  <strong>artist: </strong>
+<table class="table table-striped table-condensed">
+<thead>
+  <th>Artist</th>
+  <th>Track</th>
+</thead>
+
+<% @result.each do |track| %>
+<tr>
+  <th>
   <% track.artists.each do |artist| %>
     <%= artist.name %>
   <% end %>
-  <strong>track: </strong><%= track.name %>
-  <br>
+  </th>
+  <th><%= track.name %></th>
+  <th>
+      
+      <%= form_tag nominate_song_path(pick: track.id), method: 'add' %>
+        <%= submit_tag 'nominate!', :class => "btn btn-primary btn-lg" %>
+
+</th>
+  </tr>
 <% end %>
+</table>
