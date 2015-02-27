@@ -11,14 +11,19 @@
   <% @suggestions.each do |track| %>
     <tr>
       <th>
-        <button type="button" class="btn btn-default" aria-label="Left Align">
-          <span class="glyphicon glyphicon-arrow-up" aria-hidden="true"></span>
-        </button>
+        <%= link_to upvote_path(upvote: track.spotify_id), method: 'patch' do %>
+          <button type="button" class="btn btn-primary btn-sm" aria-label="Left Align">
+            <span class="glyphicon glyphicon-arrow-up" aria-hidden="true>"> <%= track.upvotes %></span>
+          </button>
+        <% end %>
       </th>
       <th>
-        <button type="button" class="btn btn-default" aria-label="Left Align">
-          <span class="glyphicon glyphicon-arrow-down" aria-hidden="true"></span>
-        </button>
+        
+        <%= link_to upvote_path(downvote: track.spotify_id), method: 'patch' do %>
+          <button type="button" class="btn btn-danger btn-sm" aria-label="Left Align">
+            <span class="glyphicon glyphicon-arrow-down" aria-hidden="true>"> <%= track.downvotes %></span>
+          </button>
+          <% end %>
       </th>
       <th>
         <%= track.artist %>
@@ -32,3 +37,7 @@
 <% end %>
 
   </table>
+
+
+
+  

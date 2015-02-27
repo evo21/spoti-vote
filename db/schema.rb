@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150225191732) do
+ActiveRecord::Schema.define(version: 20150227042743) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string   "namespace"
@@ -41,8 +41,10 @@ ActiveRecord::Schema.define(version: 20150225191732) do
     t.string   "artwork"
     t.boolean  "is_explicit"
     t.integer  "user_id"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
+    t.integer  "upvotes",     default: 0
+    t.integer  "downvotes",   default: 0
   end
 
   create_table "users", force: :cascade do |t|
@@ -59,6 +61,7 @@ ActiveRecord::Schema.define(version: 20150225191732) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.boolean  "admin",                  default: false
+    t.integer  "votes",                  default: 20
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true
