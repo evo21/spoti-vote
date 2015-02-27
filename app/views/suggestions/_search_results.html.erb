@@ -18,6 +18,11 @@
           <%= track.name %>
         </th>
         <th>
+          <%= link_to track.preview_url, :target => "_blank" do %>
+            <%= image_tag("play_on_spotify-green.png") %>     
+          <% end %>
+        </th> 
+        <th>
           <%= link_to nominate_song_path(track: track.id), method: 'put' do %>
             <button type="button" class="btn btn-success btn-sm" aria-label="Left Align">
               Nominate!
