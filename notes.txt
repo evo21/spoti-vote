@@ -1,0 +1,29 @@
+
+
+Every user needs to upvote and downvote suggestions
+
+But, you need to keep track of how many uv and dv per user per suggestion?  
+
+
+
+User  -->  Suggestions
+
+
+User -->  upvotes -- > Suggestions
+User -->  downvotes -- > Suggestions
+
+
+upvote and downvote table:
+  user_id  suggestion_id
+
+
+associations?
+  User
+    has_many upvotes
+    has_many downvotes
+
+  Suggestion
+    has_many upvotes
+    has_many downvotes
+
+

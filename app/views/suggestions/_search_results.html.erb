@@ -23,7 +23,7 @@
           <% end %>
         </th> 
         <th>
-          <%= link_to nominate_song_path(track: track.id), method: 'put' do %>
+          <%= link_to suggestions_path(track_id: track.id), method: 'post' do %>
             <button type="button" class="btn btn-success btn-sm" aria-label="Left Align">
               Nominate!
             </button>

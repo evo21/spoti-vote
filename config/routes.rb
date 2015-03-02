@@ -4,13 +4,22 @@ Rails.application.routes.draw do
   devise_for :users
 
 
-  resources :suggestions
+  resources :suggestions do
+    member do
+      post 'upvote'
+      post 'downvote'
+    end
+  end
+
+
   get '/', to: 'suggestions#index', as: 'dashboard'
 
 
-  post 'suggestions', to: 'suggestions#search_spotify', as: 'search_spotify'
-  put 'suggestions', to: 'suggestions#add', as: 'nominate_song'
-  patch 'suggestions', to: 'suggestions#upvote', as: 'upvote'
+
+
+#  post 'suggestions', to: 'suggestions#search_spotify', as: 'search_spotify'
+#  put 'suggestions', to: 'suggestions#add', as: 'nominate_song'
+#  patch 'suggestions', to: 'suggestions#upvote', as: 'upvote'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

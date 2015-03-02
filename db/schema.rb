@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150227042743) do
+ActiveRecord::Schema.define(version: 20150302043351) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string   "namespace"
@@ -28,6 +28,13 @@ ActiveRecord::Schema.define(version: 20150227042743) do
   add_index "active_admin_comments", ["namespace"], name: "index_active_admin_comments_on_namespace"
   add_index "active_admin_comments", ["resource_type", "resource_id"], name: "index_active_admin_comments_on_resource_type_and_resource_id"
 
+  create_table "downvotes", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "suggestion_id"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
+
   create_table "playlists", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -41,10 +48,15 @@ ActiveRecord::Schema.define(version: 20150227042743) do
     t.string   "artwork"
     t.boolean  "is_explicit"
     t.integer  "user_id"
-    t.datetime "created_at",              null: false
-    t.datetime "updated_at",              null: false
-    t.integer  "upvotes",     default: 0
-    t.integer  "downvotes",   default: 0
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  create_table "upvotes", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "suggestion_id"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
   end
 
   create_table "users", force: :cascade do |t|

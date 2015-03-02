@@ -3,53 +3,15 @@ class SuggestionsController < ApplicationController
 
   def index
     @suggestion = Suggestion.new
-    # if !params[:track_name].empty?
-    #   @track_name = RSpotify::Track.search(params[:track_name])
-    # else
-      render :index
-    # end
-  end
-
-  def create
-    # @suggestion = Suggestion.create(song_params)
     if params[:query]
       @result = RSpotify::Track.search(params[:query])
     end
     render :index
   end
 
-  def add_suggestion
-    # @suggestion = Suggestion.create(whatever params)
-  end
+  def create
+    track = RSpotify::Track.find(params[:track_id])
 
-  def upvote
-    # binding.pry
-    if current_user.votes > 0   
-      if params[:upvote]
-        @suggestion = Suggestion.find_by(:spotify_id => params[:upvote])
-        @suggestion.upvotes += 1
-      elsif params[:downvote]
-        @suggestion = Suggestion.find_by(:spotify_id => params[:downvote])
-        @suggestion.downvotes -= 1
-      end
-      @user = current_user
-      @user.votes -= 1
-      @suggestion.save
-      @user.save
-    else
-      flash[:notice] = "You have no more votes"
-    end
-    render :index
-  end
-
-  def show
-  	@track = RSpotify::Track.find(params[:id])
-  	render :index
-  end
-
-  def add
-    track = RSpotify::Track.find(params[:track])
-    # binding.pry
     artists = ""
     if track.artists.length != 1
       track.artists.each do |x|
@@ -59,13 +21,51 @@ class SuggestionsController < ApplicationController
     else
       artists = track.artists[0].name
     end
-    t = Suggestion.new(:artist => artists, :track_name => track.name, 
+
+    Suggestion.create(:artist => artists, :track_name => track.name, 
                       :album => track.album.name, :user_id => current_user.id,
                       :spotify_id => track.id, :artwork => track.album.images[0]['url'],
                       :is_explicit => track.explicit)
-    @suggestions = Suggestion.all
-    t.save
+
+    redirect_to suggestions_path
+  end
+
+  def downvote
+    @suggestion = Suggestion.find(params[:id])
+    if current_user.votes > 0  && !current_user.downvotes.find_by_suggestion_id(@suggestion.id)
+      Downvote.create(suggestion_id: @suggestion.id, user_id: current_user.id)
+      @user = current_user
+      @user.votes -= 1
+      @user.save
+    else
+      flash.now[:notice] = "You have no more votes or you downvoted this already"
+    end
     render :index
+  end
+
+  def upvote
+    if current_user.votes > 0
+      @suggestion = Suggestion.find(params[:id])
+      Upvote.create(suggestion_id: @suggestion.id, user_id: current_user.id)
+      @user = current_user
+      @user.votes -= 1
+      @user.save
+    else
+      flash[:notice] = "You have no more votes"
+    end
+    render :index
+  end
+
+
+
+
+
+  def show
+  	@track = RSpotify::Track.find(params[:id])
+  	render :index
+  end
+
+  def add
   end
 
   private
