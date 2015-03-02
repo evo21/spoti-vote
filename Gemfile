@@ -26,6 +26,7 @@ gem 'devise'
 gem 'rspotify'
 gem 'bootstrap-sass'
 gem 'activeadmin', github: 'activeadmin'
+gem 'rails_12factor'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
