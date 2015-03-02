@@ -1,5 +1,13 @@
 
+Weekly reset
 
+
+
+
+
+
+
+----------------------------------------------
 Every user needs to upvote and downvote suggestions
 
 But, you need to keep track of how many uv and dv per user per suggestion?  
