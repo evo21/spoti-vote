@@ -1,1 +1,1 @@
-# speddit
+# spoti-vote

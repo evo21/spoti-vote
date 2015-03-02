@@ -9,3 +9,15 @@ end
 
 
 tracks = RSpotify::Track.search('Wanna Know', limit: 10, market: 'US')
+
+results = RSpotify::Track.search('do you feel like we do')
+results.class
+results.first.class
+results.first.artists
+artist = results.first.artists.first
+
+results.map{|x| x.artists.first.name }
+track = results.first
+
+track.artists.map(&:name)  (same as:)
+track.artists.map {|x| x.name}
