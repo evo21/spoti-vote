@@ -7,7 +7,7 @@
       <th>Track</th>
     </thead>
 
-    <% @result.each do |track| %>
+    <% @result.first(7).each do |track| %>
       <tr>
         <th>
         <% track.artists.each do |artist| %>
@@ -23,13 +23,11 @@
           <% end %>
         </th> 
         <th>
-          <%= link_to nominate_song_path(track: track.id), method: 'put' do %>
+          <%= link_to suggestions_path(track_id: track.id), method: 'post' do %>
             <button type="button" class="btn btn-success btn-sm" aria-label="Left Align">
               Nominate!
             </button>
           <% end %>
-
-          <%#= submit_tag 'nominate!', :class => "btn btn-primary btn-lg" %>
         </th>
       </tr>
     <% end %>
